@@ -2,13 +2,16 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="./css/libs/materialize.min.css">
+    <link rel="stylesheet" href="./css/libs/google-fonts.css">
+    <link rel="stylesheet" href="./css/estilos.css">
     <title>Alura Typer</title>
 </head>
 <body>
     
-    <main>
+    <main class="container">
         <section>
-            <div>
+            <div class="center">
                 <h1>Alura Typer</h1>
 
                 <p class="frase">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, odit harum sit cumque eveniet cum? Suscipit, 
@@ -16,8 +19,14 @@
                 </p>
     
                 <ul>
-                    <li><span id="qtd-palavras">0</span> Palavras</li>
-                    <li><span id="tempo-digitacao">10</span> Segundos</li>
+                    <li>
+                        <i class="small material-icons icones">description</i>
+                        <span class="palavras" id="qtd-palavras">0</span> Palavras
+                    </li>
+                    <li>
+                        <i class="small material-icons icones">query_builder</i>
+                        <span class="palavras" id="tempo-digitacao">10</span> Segundos
+                    </li>
                 </ul>
             </div>
 
@@ -25,19 +34,36 @@
                 <div>
                     <textarea class="texto-digitado" cols="30" rows="10"></textarea>
                     <div>
-                        <button id="reiniciar-jogo" title="Reiniciar jogo" type="button">Reiniciar jogo</button>
+                        <button class="btn-floating btn-large waves-effect waves-light red" id="reiniciar-jogo" title="Reiniciar jogo" type="button">
+                            <i class="material-icons">restore</i>
+                        </button>
                     </div>
                 </div>
 
-                <ul>
-                    <li><span id="qtd-caracteres">0</span> Caracteres</li>
-                    <li><span id="qtd-palavras-dig">0</span> Palavras</li>
+                <ul class="center">
+                    <li><span class="palavras" id="qtd-caracteres">0</span> Caracteres</li>
+                    <li><span class="palavras" id="qtd-palavras-dig">0</span> Palavras</li>
                 </ul>
             </div>
+        </section>
+
+        <section class="placar">
+            <h3 class="center">Placar</h3>
+
+            <table class="centered bordered">
+                <thead>
+                    <tr>
+                        <td>Nome</td><td>Nº de Palavras</td><td>Ações</td>
+                    </tr>
+                </thead>
+                
+                <tbody></tbody>
+            </table>
         </section>
     </main>
 
     <script type="text/javascript" src="./js/jquery.js"></script>
     <script type="text/javascript" src="./js/main.js"></script>
+    <script type="text/javascript" src="./js/placar.js"></script>
 </body>
 </html>

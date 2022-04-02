@@ -24,6 +24,8 @@ function contarPalavrasDigitadas(){
 
         let qtdCaracteres = conteudo.length;
             $('#qtd-caracteres').text(qtdCaracteres);
+
+        verificarCampoDigitado(conteudo);
     })
 }
 
@@ -36,18 +38,38 @@ function iniciarContador(){
             $('#tempo-digitacao').text(temposRestante);
 
             if(temposRestante < 1){
-                campo.attr('disabled', true);
                 clearInterval(id);
+                finalizarJogo();
             }
         }, 1000);
     });
 }
 
+function finalizarJogo(){
+    campo.attr('disabled', true);
+    campo.toggleClass('campo-desabilitado');
+    adicionarLinha();
+}
+
+function verificarCampoDigitado(conteudo){
+    let frase = $('.frase').text();
+        if(conteudo == frase.substr(0, conteudo.length)){
+            campo.removeClass('borda-vermelha');
+            campo.addClass('borda-verde');
+        }else{
+            campo.removeClass('borda-verde');
+            campo.addClass('borda-vermelha');
+        }
+}
+
 function reiniaciarJogo(){
     campo.attr('disabled', false);
     campo.val('');
+    campo.toggleClass('campo-desabilitado');
     $('#qtd-palavras-dig').text('0');
     $('#qtd-caracteres').text(0);
-    $('#tempo-digitacao').text(tempoInicial);   
+    $('#tempo-digitacao').text(tempoInicial);
+    campo.removeClass('borda-vermelha');
+    campo.removeClass('borda-verde');
     iniciarContador();
 }
