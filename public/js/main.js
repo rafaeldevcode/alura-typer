@@ -15,6 +15,11 @@ function contarPalavras(){
         numeroPalavras.text(qtdPalavras);
 }
 
+function auatizaTempoInicial(tempo){
+    tempoInicial = tempo;
+    $('#tempo-digitacao').text(tempo);
+}
+
 function contarPalavrasDigitadas(){
     campo.on('input', ()=>{
         let conteudo = campo.val();
@@ -30,9 +35,8 @@ function contarPalavrasDigitadas(){
 }
 
 function iniciarContador(){
-    let temposRestante = $('#tempo-digitacao').text();
-
     campo.one('focus', ()=>{
+        let temposRestante = $('#tempo-digitacao').text();
         let id = setInterval(()=>{
             temposRestante--;
             $('#tempo-digitacao').text(temposRestante);
@@ -49,6 +53,9 @@ function finalizarJogo(){
     campo.attr('disabled', true);
     campo.toggleClass('campo-desabilitado');
     adicionarLinha();
+
+    $('.placar').slideDown();
+    scrollPlacar();
 }
 
 function verificarCampoDigitado(conteudo){

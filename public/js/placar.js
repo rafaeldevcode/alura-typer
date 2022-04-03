@@ -1,7 +1,9 @@
+$('#mostrar-placar').click(mostrarPlacar);
+
 function adicionarLinha(){
     let corpoTable = $('.placar').find('tbody');
     let jogador = 'Rafael';
-    let palavras = $('#qtd-palavras-dig').text().length;
+    let palavras = $('#qtd-palavras-dig').text();
 
     let linha = criarLinha(jogador, palavras);
         corpoTable.prepend(linha);
@@ -29,5 +31,20 @@ function criarLinha(jogador, palavras){
 
 function removerLinha(event){
     event.preventDefault();
-    $(this).parent().parent().remove();
+    let item = $(this).parent().parent();
+        item.fadeOut(()=>{
+            item.remove();
+        });
+}
+
+function mostrarPlacar(){
+    $('.placar').stop().slideToggle();
+    scrollPlacar();
+}
+
+function scrollPlacar(){
+    let posicaoPlacar = $('.placar').offset().top;
+        $('body').animate({
+            scrollTop: posicaoPlacar + "px"
+        }, 1000);
 }
