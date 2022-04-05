@@ -36,3 +36,13 @@
 .placar{
     display: none;
 }
+
+.erros{
+    font-weight: 700;
+    color: rgb(255, 0, 0);
+    display: none;
+}
+
+#spinner{
+    display: none;
+}
