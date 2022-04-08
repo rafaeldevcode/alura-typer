@@ -50,3 +50,13 @@
 #frase-id{
     width: 40px;
 }
+
+#sincronizar{
+    float: right;
+}
+
+.success{
+    font-weight: bolder;
+    color: rgb(0, 255, 0);
+    display: none;
+}

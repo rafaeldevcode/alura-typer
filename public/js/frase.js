@@ -6,9 +6,11 @@ function carregarFraseAleatoria(){
 
     $.get('http://localhost:3000/frases', (res)=>{
         let numeroAleatorio = Math.floor(Math.random() * res.length);
-            
+
             $('.frase').text(res[numeroAleatorio].texto);
-            auatizaTempoInicial(res[numeroAleatorio].tempo);
+            $('#id-frase').text(res[numeroAleatorio]._id + ' - ');
+
+            atuatizaTempoInicial(res[numeroAleatorio].tempo);
             contarPalavras();
     }).fail((error)=>{
         let messageErro = error.status + ' ' + error.statusText + ': ' +error.responseText;
@@ -29,8 +31,11 @@ function carregarFraseUnica(){
     let data = { id: fraseId };
         $('#spinner').show();
         $.get('http://localhost:3000/frases', data, (res)=>{
+
             $('.frase').text(res.texto);
-            auatizaTempoInicial(res.tempo);
+            $('#id-frase').text(res._id + ' - ');
+
+            atuatizaTempoInicial(res.tempo);
             contarPalavras();
         }).fail((error)=>{
             // let messageErro = error.status + ' ' + error.statusText + ': ' +error.responseText;

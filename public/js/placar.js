@@ -1,4 +1,5 @@
 $('#mostrar-placar').click(mostrarPlacar);
+$('#sincronizar').click(sincronizarPlacar);
 
 function adicionarLinha(){
     let corpoTable = $('.placar').find('tbody');
@@ -47,4 +48,60 @@ function scrollPlacar(){
         $('body').animate({
             scrollTop: posicaoPlacar + "px"
         }, 1000);
+}
+
+function sincronizarPlacar(){
+
+    let placar = [];
+    let linhas = $("tbody>tr");
+
+    linhas.each(function(){
+        let usuario = $(this).find("td:nth-child(1)").text();
+        let palavras = $(this).find("td:nth-child(2)").text();
+
+        let score = {
+            usuario: usuario,
+            pontos: palavras            
+        };
+
+        placar.push(score); 
+    });
+
+    dados = {
+        placar: placar
+    }
+
+    $.post("http://localhost:3000/placar", dados, ()=>{
+
+        let successClass = $('.success')
+        successClass.show();
+        successClass.text('Dados sincronizado com sucesso!');
+
+        setTimeout(() => {
+            successClass.hide();
+        }, 2500);
+
+    }).fail((error)=>{
+
+        let messageErro = error.status + ' ' + error.statusText + ': ' +error.responseText;
+        let erroClass = $('.erros')
+        erroClass.show();
+        erroClass.text(messageErro);
+
+        setTimeout(() => {
+            erroClass.hide();
+        }, 2500);
+
+    });
+}
+
+function atualizarPlacar(){
+    $.get("http://localhost:3000/placar", (res)=>{
+        $(res).each(function(){
+
+            let linha = criarLinha(this.usuario, this.pontos);
+                linha.find('.remover').click(removerLinha);
+                $('tbody').append(linha);
+        });
+    })
 }

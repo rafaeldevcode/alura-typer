@@ -5,6 +5,7 @@ $(document).ready(()=>{
     contarPalavras();
     contarPalavrasDigitadas();
     iniciarContador();
+    atualizarPlacar();
     $('#reiniciar-jogo').click(reiniaciarJogo);
 })
 
@@ -15,7 +16,7 @@ function contarPalavras(){
         numeroPalavras.text(qtdPalavras);
 }
 
-function auatizaTempoInicial(tempo){
+function atuatizaTempoInicial(tempo){
     tempoInicial = tempo;
     $('#tempo-digitacao').text(tempo);
 }
