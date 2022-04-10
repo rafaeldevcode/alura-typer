@@ -60,3 +60,16 @@
     color: rgb(0, 255, 0);
     display: none;
 }
+
+#select-usuario{
+    display: inline-block;
+}
+
+#usuarios{
+    display: block;
+}
+
+.selectize-input {
+    width: 150px;
+    vertical-align: middle;
+}

@@ -3,7 +3,7 @@ $('#sincronizar').click(sincronizarPlacar);
 
 function adicionarLinha(){
     let corpoTable = $('.placar').find('tbody');
-    let jogador = 'Rafael';
+    let jogador = $('#usuarios').val();
     let palavras = $('#qtd-palavras-dig').text();
 
     let linha = criarLinha(jogador, palavras);
@@ -73,25 +73,14 @@ function sincronizarPlacar(){
 
     $.post("http://localhost:3000/placar", dados, ()=>{
 
-        let successClass = $('.success')
-        successClass.show();
-        successClass.text('Dados sincronizado com sucesso!');
+        $(".tooltip").tooltipster("open").tooltipster("content", "Dados sincronizado com sucesso!");
+    }).fail(()=>{
 
-        setTimeout(() => {
-            successClass.hide();
-        }, 2500);
-
-    }).fail((error)=>{
-
-        let messageErro = error.status + ' ' + error.statusText + ': ' +error.responseText;
-        let erroClass = $('.erros')
-        erroClass.show();
-        erroClass.text(messageErro);
-
-        setTimeout(() => {
-            erroClass.hide();
-        }, 2500);
-
+        $(".tooltip").tooltipster("open").tooltipster("content", "Erro ao fazer a sincronizção!");
+    }).always(()=>{
+        setTimeout(()=>{
+            $(".tooltip").tooltipster("close");
+        }, 3000);
     });
 }
 

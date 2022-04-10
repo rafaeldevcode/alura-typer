@@ -6,7 +6,15 @@ $(document).ready(()=>{
     contarPalavrasDigitadas();
     iniciarContador();
     atualizarPlacar();
+    $('#usuarios').selectize({
+        create: true,
+        sortField: 'text'
+    });
     $('#reiniciar-jogo').click(reiniaciarJogo);
+
+    $('.tooltip').tooltipster({
+        trigger: "custom"
+    });
 })
 
 function contarPalavras(){
